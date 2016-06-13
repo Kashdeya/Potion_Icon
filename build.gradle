@@ -1,0 +1,51 @@
+
+// For those who want the bleeding edge
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+version = "${version}"
+group= "com.kashdeya.potionicons" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "potionicons"
+
+minecraft {
+    runDir = "run"
+	mappings = "${mappings_version}"
+    version = "${minecraft_version}-${forge_version}-${display_version}"
+    replaceIn "${mod_info_path}"
+    replace "%MOD_VERSION%", "${mod_version}"
+    replace "%FORGE_VERSION%", "${forge_version}"
+}
+
+display_version = "${display_version}" ?: "${minecraft_version}"
+version = "${display_version}-${mod_version}"
+
+processResources
+{
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+                
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+jar {
+    classifier = 'release'
+}

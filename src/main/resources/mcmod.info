@@ -1,0 +1,16 @@
+[
+{
+  "modid": "PotionIcons",
+  "name": "PotionIcons",
+  "description": "Removes the Potion Icons in game.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://minecraft.curseforge.com/projects/potion-icon-remover",
+  "updateUrl": "",
+  "authorList": ["Kashdeya", "Darkosto"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
