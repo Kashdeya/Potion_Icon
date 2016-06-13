@@ -20,11 +20,11 @@ import com.kashdeya.potionicons.proxy.CommonProxy;
 
 public class PotionIcons {
 	
-	@Instance(value = Reference.MOD_ID)
-	public static PotionIcons instance;
-	
 	@SidedProxy(clientSide = Reference.PROXY_CLIENT, serverSide = Reference.PROXY_COMMON)
 	public static CommonProxy proxy;
+	
+	@Instance(value = Reference.MOD_ID)
+	public static PotionIcons instance;
 	
 	public static boolean infoOff = false;
 	
@@ -35,7 +35,6 @@ public class PotionIcons {
 	public void preInit(FMLPreInitializationEvent e){
 		this.proxy.preInit(e);
 		MinecraftForge.EVENT_BUS.register(instance);
-		
 		File f = new File(configDir, "PotionIcons.cfg");
         config = new Configuration(f);
 		config.load();
@@ -65,4 +64,5 @@ public class PotionIcons {
 			}
 		}
 	}
+
 }
